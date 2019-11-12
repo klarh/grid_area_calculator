@@ -1,7 +1,7 @@
 
 var render_scene = function()
 {
-    var canvas = new fabric.Canvas('main_elt')
+    var canvas = new fabric.Canvas('main_elt', {selection: false})
 
     var pixel_scale = Math.floor(Math.min(window.innerWidth, window.innerHeight)/10)
     var max_size = Math.max(window.innerWidth, window.innerHeight)
