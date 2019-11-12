@@ -1,0 +1,14 @@
+<html>
+  <script src="fabric.min.js"></script>
+  <script src="dnd_aoe.js" ></script>
+<body onload="render_scene()">
+  <div id="controls_box" style="width: 100%; height: 3em; background-color: rgba(255, 255, 255, 0.9);">
+    <!--Pixel scale: --> <input id="pixel_scale_input" type="number" style="width: 3em; display: none" value="100"/>
+    <!--Coverage threshold: --> <input id="pixel_scale_input" type="number" style="width: 3em; display: none" value="50"/>
+    Radius: <input id="radius_input" type="number" style="width: 3em" value="15"/>
+    <button id="create_sphere" type="button">Sphere</button>
+    <button id="create_cone" type="button">Cone</button>
+  </div>
+  <canvas id="main_elt" style="width: 100%; height: 100%"></canvas>
+</body>
+</html>
