@@ -1,18 +1,25 @@
 <html>
   <script src="fabric.min.js"></script>
   <script src="dnd_aoe.js" ></script>
+  <style>
+    div,span,input,button {
+        font-size: 3vmin;
+    }
+  </style>
 <body onload="render_scene()">
-  <div id="controls_box" style="width: 100%; height: 3em; background-color: rgba(255, 255, 255, 0.9);">
+  <div id="controls_box" style="width: 100%; background-color: rgba(255, 255, 255, 0.9); text-align: center">
     <!--Pixel scale: --> <input id="pixel_scale_input" type="number" style="width: 3em; display: none" value="100"/>
     <!--Coverage threshold: --> <input id="pixel_scale_input" type="number" style="width: 3em; display: none" value="50"/>
     Radius: <input id="radius_input" type="number" style="width: 3em" value="15"/>
-    <span style="width: 1em">&nbsp;</span>
-    <button id="create_sphere" type="button">Sphere</button>
-    <button id="create_cone" type="button">Cone</button>
-    <button id="create_line" type="button">Line</button>
-    <span style="width: 1em">&nbsp;</span>
-    <button id="decrease_scale" type="button">Smaller</button>
-    <button id="increase_scale" type="button">Larger</button>
+    <span style="margin: auto 0.5em">
+      <button id="create_sphere" type="button">Sphere</button>
+      <button id="create_cone" type="button">Cone</button>
+      <button id="create_line" type="button">Line</button>
+    </span>
+    <span style="margin: auto 0.5em">
+      <button id="decrease_scale" type="button">Smaller</button>
+      <button id="increase_scale" type="button">Larger</button>
+    </span>
   </div>
   <canvas id="main_elt" style="width: 100%; height: 100%"></canvas>
 </body>

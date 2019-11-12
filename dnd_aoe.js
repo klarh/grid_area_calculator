@@ -10,10 +10,11 @@ var render_scene = function()
     pixel_scale_box.value = pixel_scale
     let feet_per_square = 5
     let translucent_color = 'rgba(50, 70, 200, 0.5)'
+    let control_size = document.getElementById('create_sphere').getBoundingClientRect().height*2
     let line_props = {strokeWidth: 3, stroke: 'black', selectable: false, evented: false}
     let group_props = {centeredRotation: false, originY: 'center',
                        lockScalingX: true, lockScalingY: true,
-                       hasBorders: false, cornerSize: pixel_scale/5,
+                       hasBorders: false, cornerSize: control_size,
                        transparentCorners: false,
                        cornerColor: 'rgba(25, 125, 35, 0.5)'}
     let control_viz = {bl: false, br: false, mb: false, ml: false,
