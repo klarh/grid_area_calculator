@@ -63,7 +63,8 @@ var render_scene = function()
             selectable: false, evented: false,
         })
 
-        let group = new fabric.Group([large_circle, get_center_circle()])
+        let group = new fabric.Group([large_circle, get_center_circle()],
+                                     {lockScalingX: true, lockScalingY: true})
         canvas.add(group)
     }
     sphere_button.addEventListener('click', draw_sphere)
@@ -92,7 +93,8 @@ var render_scene = function()
         let group = new fabric.Group(
             [cone, dot],
             {centeredRotation: false, originY: 'center',
-             originX: dot.radius/(dot.radius + radius)})
+             originX: dot.radius/(dot.radius + radius),
+             lockScalingX: true, lockScalingY: true})
         canvas.add(group).setActiveObject(group)
     }
     cone_button.addEventListener('click', draw_cone)
@@ -123,7 +125,8 @@ var render_scene = function()
         let group = new fabric.Group(
             [line, dot],
             {centeredRotation: false, originY: 'center',
-             originX: dot.radius/(dot.radius + length)})
+             originX: dot.radius/(dot.radius + length),
+             lockScalingX: true, lockScalingY: true})
         canvas.add(group).setActiveObject(group)
     }
     line_button.addEventListener('click', draw_line)
