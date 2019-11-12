@@ -57,7 +57,7 @@ var render_scene = function()
         let large_circle = new fabric.Circle({
             radius: radius,
             fill: translucent_color,
-            strokeWidth: 3, stroke: 'black',
+            strokeWidth: line_props['strokeWidth'], stroke: 'black',
             originX: 'center', originY: 'center',
             left: center[0], top: center[1],
             selectable: false, evented: false,
@@ -83,7 +83,7 @@ var render_scene = function()
             ],
             {
                 fill: translucent_color,
-                strokeWidth: 3, stroke: 'black',
+                strokeWidth: line_props['strokeWidth'], stroke: 'black',
                 originX: 'left', originY: 'center',
                 left: center[0] - half_line_width, top: center[1],
                 centeredRotation: false,
@@ -96,14 +96,18 @@ var render_scene = function()
 
     let smaller_button = document.getElementById('decrease_scale')
     let decrease_scale = function() {
-        pixel_scale /= 1.25
+        let factor = 1.25
+        pixel_scale /= factor
+        line_props['strokeWidth'] /= factor
         redrawCanvas()
     }
     smaller_button.addEventListener('click', decrease_scale)
 
     let larger_button = document.getElementById('increase_scale')
     let increase_scale = function() {
-        pixel_scale *= Math.sqrt(1.25)
+        let factor = Math.sqrt(1.25)
+        pixel_scale *= factor
+        line_props['strokeWidth'] *= factor
         redrawCanvas()
     }
     larger_button.addEventListener('click', increase_scale)
