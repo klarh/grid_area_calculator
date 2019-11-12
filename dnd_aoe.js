@@ -73,7 +73,6 @@ var render_scene = function()
         let half_line_width = line_props['strokeWidth']/2
         let radius = radius_box.value*pixel_scale/feet_per_square
         let center = get_center_coords()
-        console.log(center)
 
         let cone = new fabric.Polygon(
             [
@@ -88,11 +87,37 @@ var render_scene = function()
                 left: center[0] - half_line_width, top: center[1],
                 centeredRotation: false,
             })
-        console.log(cone)
         canvas.add(get_center_circle())
         canvas.add(cone).setActiveObject(cone)
     }
     cone_button.addEventListener('click', draw_cone)
+
+    let line_button = document.getElementById('create_line')
+    let draw_line = function() {
+        redrawCanvas()
+        let half_line_width = line_props['strokeWidth']/2
+        let radius = radius_box.value*pixel_scale/feet_per_square
+        let center = get_center_coords()
+        let length = Math.min(window.innerWidth, window.innerHeight)/2
+
+        let line = new fabric.Polygon(
+            [
+                {x: 0, y: -radius},
+                {x: length, y: -radius},
+                {x: length, y: radius},
+                {x: 0, y: radius},
+            ],
+            {
+                fill: translucent_color,
+                strokeWidth: line_props['strokeWidth'], stroke: 'black',
+                originX: 'left', originY: 'center',
+                left: center[0] - half_line_width, top: center[1],
+                centeredRotation: false,
+            })
+        canvas.add(get_center_circle())
+        canvas.add(line).setActiveObject(line)
+    }
+    line_button.addEventListener('click', draw_line)
 
     let smaller_button = document.getElementById('decrease_scale')
     let decrease_scale = function() {
