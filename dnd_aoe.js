@@ -2,19 +2,19 @@
 var render_scene = function()
 {
   var canvas = new fabric.Canvas('main_elt')
-  
+
   var pixel_scale = Math.floor(Math.min(window.innerWidth, window.innerHeight)/10)
   var max_size = Math.max(window.innerWidth, window.innerHeight)
-  
+
   let pixel_scale_box = document.getElementById('pixel_scale_input')
   pixel_scale_box.value = pixel_scale
   let feet_per_square = 5
   let translucent_color = 'rgba(50, 70, 200, 0.5)'
   let line_props = {strokeWidth: 3, stroke: 'black', selectable: false, evented: false}
-  
+
   let draw_lines = function() {
     let grid_lines = []
-    
+
     for(i = 0; i*pixel_scale < window.innerWidth; i++)
     {
       grid_lines.push(new fabric.Line([i*pixel_scale, 0, i*pixel_scale, window.innerHeight], line_props))
@@ -29,13 +29,13 @@ var render_scene = function()
       canvas.add(grid_lines[i])
     }
   }
-  
+
   let get_center_coords = function() {
     let half_line_width = line_props['strokeWidth']/2
     return [Math.round(window.innerWidth/pixel_scale/2)*pixel_scale + half_line_width,
             Math.round(window.innerHeight/pixel_scale/2)*pixel_scale + half_line_width]
   }
-  
+
   let get_center_circle = function() {
     let center = get_center_coords()
     return new fabric.Circle({
@@ -45,15 +45,15 @@ var render_scene = function()
       left: center[0], top: center[1]
     })
   }
-  
+
   let radius_box = document.getElementById('radius_input')
-  
+
   let sphere_button = document.getElementById('create_sphere')
   let draw_sphere = function() {
     redrawCanvas()
     let radius = radius_box.value*pixel_scale/feet_per_square
     let center = get_center_coords()
-    
+
     let large_circle = new fabric.Circle({
       radius: radius,
       fill: translucent_color,
@@ -66,7 +66,7 @@ var render_scene = function()
     canvas.add(get_center_circle())
   }
   sphere_button.addEventListener('click', draw_sphere)
-  
+
   let cone_button = document.getElementById('create_cone')
   let draw_cone = function() {
     redrawCanvas()
@@ -74,7 +74,7 @@ var render_scene = function()
     let radius = radius_box.value*pixel_scale/feet_per_square
     let center = get_center_coords()
     console.log(center)
-    
+
     let cone = new fabric.Polygon(
       [
         {x: 0, y: 0},
@@ -93,7 +93,21 @@ var render_scene = function()
     canvas.add(cone).setActiveObject(cone)
   }
   cone_button.addEventListener('click', draw_cone)
-  
+
+  let smaller_button = document.getElementById('decrease_scale')
+  let decrease_scale = function() {
+    pixel_scale /= 1.25
+    redrawCanvas()
+  }
+  smaller_button.addEventListener('click', decrease_scale)
+
+  let larger_button = document.getElementById('increase_scale')
+  let increase_scale = function() {
+    pixel_scale *= Math.sqrt(1.25)
+    redrawCanvas()
+  }
+  larger_button.addEventListener('click', increase_scale)
+
   // resize the canvas to fill browser window dynamically
   window.addEventListener('resize', redrawCanvas, false)
 
