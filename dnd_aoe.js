@@ -1,13 +1,9 @@
 
 let render_scene = function()
 {
-    let canvas = new fabric.Canvas('main_elt', {selection: false})
-
     let pixel_scale = Math.floor(Math.min(window.innerWidth, window.innerHeight)/10)
     let max_size = Math.max(window.innerWidth, window.innerHeight)
 
-    let pixel_scale_box = document.getElementById('pixel_scale_input')
-    pixel_scale_box.value = pixel_scale
     let feet_per_square = 5
     let translucent_color = 'rgba(50, 70, 200, 0.5)'
     let control_size = document.getElementById('create_sphere').getBoundingClientRect().height*2
@@ -19,6 +15,11 @@ let render_scene = function()
                        cornerColor: 'rgba(25, 125, 35, 0.5)'}
     let control_viz = {bl: false, br: false, mb: false, ml: false,
                        mr: false, mt: false, tl: false, tr: false}
+
+    let canvas = new fabric.Canvas('main_elt', {selection: false})
+    let radius_box = document.getElementById('radius_input')
+    let pixel_scale_box = document.getElementById('pixel_scale_input')
+    pixel_scale_box.value = pixel_scale
 
     let draw_lines = function() {
         let grid_lines = []
@@ -53,8 +54,6 @@ let render_scene = function()
             left: center[0], top: center[1]
         })
     }
-
-    let radius_box = document.getElementById('radius_input')
 
     let sphere_button = document.getElementById('create_sphere')
     let draw_sphere = function() {
@@ -161,9 +160,7 @@ let render_scene = function()
     }
     larger_button.addEventListener('click', increase_scale)
 
-    // resize the canvas to fill browser window dynamically
     window.addEventListener('resize', redrawCanvas, false)
-
     function redrawCanvas() {
         canvas.clear()
         canvas.setWidth(window.innerWidth)
