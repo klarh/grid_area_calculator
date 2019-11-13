@@ -1,10 +1,10 @@
 
-var render_scene = function()
+let render_scene = function()
 {
-    var canvas = new fabric.Canvas('main_elt', {selection: false})
+    let canvas = new fabric.Canvas('main_elt', {selection: false})
 
-    var pixel_scale = Math.floor(Math.min(window.innerWidth, window.innerHeight)/10)
-    var max_size = Math.max(window.innerWidth, window.innerHeight)
+    let pixel_scale = Math.floor(Math.min(window.innerWidth, window.innerHeight)/10)
+    let max_size = Math.max(window.innerWidth, window.innerHeight)
 
     let pixel_scale_box = document.getElementById('pixel_scale_input')
     pixel_scale_box.value = pixel_scale
